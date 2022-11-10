@@ -2,6 +2,28 @@
     "name":"Jonatan Cabrera",
     "job": "Web Developer",
     "github":"JonatanCabrera27",
+    "favoritos":[
+        {
+            "name":"JugandoConNatalia",
+            "url":"https://www.youtube.com/c/JugandoconnataliaArg",
+            "avatar":"https://yt3.ggpht.com/ytc/AMLnZu90b395n56S4T--ac9qHGBlOIszybsMYWBKqln2PA=s88-c-k-c0x00ffffff-no-rj"
+        },
+        {
+            "name":"Capitan Gato",
+            "url":"https://www.youtube.com/c/CapitanGato",
+            "avatar":"https://yt3.ggpht.com/ytc/AMLnZu9yCcwKLPmlNYju-8MONnl9BZekK-4LWFW2rr_Dbw=s88-c-k-c0x00ffffff-no-rj"
+        },
+        {
+            "name":"Alura",
+            "url":"https://www.youtube.com/c/Alura/playlists",
+            "avatar":"https://yt3.ggpht.com/xqhIoXspeX7eqouJvNHl1xqpv9213Pl26ENZbuouXxO2RlDadjsveNXfgnj8GTUk7thFYUkVRg=s88-c-k-c0x00ffffff-no-rj"
+        },
+        {
+            "name":"Aim To Head Mix",
+            "url":"https://www.youtube.com/channel/UCyI1D9N2OvZif9a2JhV_nrA",
+            "avatar":"https://yt3.ggpht.com/O1Wtw5RD61-DnyexK-qWn0NNibxF7clVtCa24ord-AiOT545uPqxiqlC-QAsGbg3neuv1pVV=s88-c-k-c0x00ffffff-no-rj"
+        }
+    ],
     "playlists": {
         "jogos": [
             {
