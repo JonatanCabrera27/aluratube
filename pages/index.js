@@ -143,6 +143,9 @@ const StyleFavoritos = styled.div`
     }
     .favoritos-display{
         display: flex;
+        @media (max-width: 600px) {
+            display: grid;
+          }
 
     }
 `;
