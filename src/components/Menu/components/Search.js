@@ -33,15 +33,18 @@ const StyledSearch = styled.div`
     }
   }
 `;
-export default function Search (){
-  const [valorDaBusca,setValorDaBusca] = React.useState("Frost");
+export default function Search({ valorDoFiltro, setValorDoFiltro }) {
+  // const [valorDaBusca, setValorDaBusca] = React.useState("Teste");
+  // console.log("Search", valorDaBusca)
+  const valorDaBusca = valorDoFiltro;
+  const setValorDaBusca = setValorDoFiltro;
+
   return (
-    <StyledSearch>
-      {/* variable infosDoEvento tambien es conocido como e,e de evento  */}
-        <input type="text" onChange={(e) =>{setValorDaBusca(e.target.value)}}/>
-        <button>
-            🔎
-        </button>
-    </StyledSearch>
-   ) 
+      <StyledSearch>
+          <input type="text" onChange={(e) => setValorDaBusca(e.target.value)} value={valorDaBusca} />
+          <button>
+              🔎
+          </button>
+      </StyledSearch>
+  )
 }

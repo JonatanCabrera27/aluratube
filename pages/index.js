@@ -1,18 +1,16 @@
+import React from "react";
 import config from "../config.json";
 import styled from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
-import Image from 'next/image';
-import profilePic from '../src/img/banner.jpg';
 
 
 function HomePage() {
     const estilosDaHomePage = {
         // backgroundColor: "red" 
     };
-    const valorDoFiltro = "F"
-    // console.log(config.playlists);
+    const [valorDoFiltro, setValorDoFiltro] = React.useState("");
 
     return (
         <>
@@ -23,7 +21,8 @@ function HomePage() {
                 flex: 1,
                 // backgroundColor: "red",
             }}>
-                <Menu />
+                {/* Prop Drilling */}
+                <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
                 <Header />
                 <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
                     Conteúdo
@@ -58,20 +57,19 @@ const StyledHeader = styled.div`
         padding: 16px 32px;
         gap: 16px;
     }
-    .user-banner{
-        margin-top: 50px;
-        height: 230px;
-        width: 100%;
-    }
 
+`;
+
+const StyledBanner = styled.div`
+    background-color: blue;
+    height: 230px;
+    background-image: url(${({bg}) => bg})
+    /* background-image: url(${config.bg}) */
 `;
 function Header() {
     return (
         <StyledHeader>
-            <Image 
-                className="user-banner" 
-                src={profilePic}
-            />
+            <StyledBanner bg={config.bg}/>            
             <section className="user-info">
                 <img id="user" src={`https://github.com/${config.github}.png`} />
                 <div>
@@ -87,7 +85,8 @@ function Header() {
     )
 }
 
-function Timeline({serachValue, ...propriedades}) {
+function Timeline({ searchValue, ...propriedades }) {
+    // console.log("Dentro do componente", propriedades.playlists);
     const playlistNames = Object.keys(propriedades.playlists);
     // Statement
     // Retorno por expressão
@@ -95,23 +94,28 @@ function Timeline({serachValue, ...propriedades}) {
         <StyledTimeline>
             {playlistNames.map((playlistName) => {
                 const videos = propriedades.playlists[playlistName];
+                // console.log(playlistName);
+                // console.log(videos);
                 return (
-                    <section>
+                    <section key={playlistName}>
                         <h2>{playlistName}</h2>
                         <div>
-                            {videos.filter((video) =>{
-                                return video.title.includes(serachValue)
-                            }
-                            ).map((video) => {
-                                return (
-                                    <a href={video.url}>
-                                        <img src={video.thumb} />
-                                        <span>
-                                            {video.title}
-                                        </span>
-                                    </a>
-                                )
-                            })}
+                            {videos
+                                .filter((video) => {
+                                    const titleNormalized = video.title.toLowerCase();
+                                    const searchValueNormalized = searchValue.toLowerCase();
+                                    return titleNormalized.includes(searchValueNormalized)
+                                })
+                                .map((video) => {
+                                    return (
+                                        <a key={video.url} href={video.url}>
+                                            <img src={video.thumb} />
+                                            <span>
+                                                {video.title}
+                                            </span>
+                                        </a>
+                                    )
+                                })}
                         </div>
                     </section>
                 )
@@ -166,8 +170,8 @@ function Favoritos(props){
                     {favoritosNames.map((favoritosName) => {
                         const canales = props.favoritos[favoritosName];
                         return (
-                            <div className="favoritos-info">
-                                <a className="center-item" href={canales.url}>
+                            <div key={favoritosName} className="favoritos-info">
+                                <a className="center-item" key={canales.url} href={canales.url}>
                                     <img id="avatar" src={canales.avatar} />
                                 </a>
                                 <p>
