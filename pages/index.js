@@ -11,7 +11,7 @@ function HomePage() {
     const estilosDaHomePage = {
         // backgroundColor: "red" 
     };
-
+    const valorDoFiltro = "F"
     // console.log(config.playlists);
 
     return (
@@ -25,7 +25,7 @@ function HomePage() {
             }}>
                 <Menu />
                 <Header />
-                <Timeline playlists={config.playlists}>
+                <Timeline searchValue={valorDoFiltro} playlists={config.playlists}>
                     Conteúdo
                 </Timeline>
                 <Favoritos favoritos = {config.favoritos}/>
@@ -87,7 +87,7 @@ function Header() {
     )
 }
 
-function Timeline(propriedades) {
+function Timeline({serachValue, ...propriedades}) {
     const playlistNames = Object.keys(propriedades.playlists);
     // Statement
     // Retorno por expressão
@@ -99,7 +99,10 @@ function Timeline(propriedades) {
                     <section>
                         <h2>{playlistName}</h2>
                         <div>
-                            {videos.map((video) => {
+                            {videos.filter((video) =>{
+                                return video.title.includes(serachValue)
+                            }
+                            ).map((video) => {
                                 return (
                                     <a href={video.url}>
                                         <img src={video.thumb} />
