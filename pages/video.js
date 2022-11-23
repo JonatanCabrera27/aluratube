@@ -106,7 +106,7 @@ const StyledVideo = styled.div`
     }
     .caja__comentarios{
         background-color:${({ theme }) => theme.backgroundLevel1};
-        width:40em;
+        width:37.4em;
         height: 7em;
         border-radius: 1em;
         padding: 2rem;
@@ -122,6 +122,10 @@ const StyledVideo = styled.div`
         color:${({ theme }) => theme.textColorBase};
         background-color:${({ theme }) => theme.backgroundLevel1};
     }
+    .caja__comentarios > input:focus{
+        outline:none;
+        border-radius:1em;    
+    }
     #user{
         width:40px;
         height:40px;
@@ -129,8 +133,8 @@ const StyledVideo = styled.div`
     }
     .caja__comentarios > span{
         position:relative;
-        left:2em;
-        top:-1em;
+        left:1em;
+        top:-.5em;
         width:40px;
         height:40px;
         background-color:${({ theme }) => theme.backgroundLevel1};
@@ -148,19 +152,30 @@ const StyledVideo = styled.div`
     }
     .lista__comentarios{
         margin-top:2em;
-        width:40em;
+        width:37.4em;
         height:25em;
         border-radius: 1em;
         background-color:${({ theme }) => theme.backgroundLevel1};
         padding:2em;
         display:flex;
+        flex-direction: column;
+        
     }
-    .lista__comentarios > p{
+    .comentario{
+        display:flex;
+    }
+    .comentario > p {
         margin-left: 1em;
-        margin-top:.7em;
+    }
+    .like_comentario{
+        width: 60px;
     }
     @media (max-width:600px){
         flex-direction: column;
+        .comentarios,.caja__comentarios,.lista__comentarios{
+            margin-left:0em;
+            width:100%;
+        }
     }
 `;
 
@@ -286,7 +301,7 @@ export default function Video() {
                     <div className="comentarios">
                         <div className="contador__comentario">
                             <p>
-                                15K comentarios
+                                1 comentarios
                             </p>
                             <p>
                                 <span><i class="fa-solid fa-bars-staggered"></i></span> Ordenar
@@ -301,12 +316,24 @@ export default function Video() {
                             <hr />
                         </div>
                         <div className="lista__comentarios">
-                            <picture>
-                                <img id="user" src={`https://github.com/${config.github}.png`} />
-                            </picture>
-                            <p>
-                                Buen video 10/10
-                            </p>
+                            <div className="comentario">
+                                <picture>
+                                    <img id="user" src={`https://github.com/${config.github}.png`} />
+                                </picture>
+                                <p>
+                                    Buen video 10/10
+                                </p>
+                                <div className="botones">
+                                    <div className="reacciones">
+                                        <button className="like_comentario like">
+                                            <span><i className="fa-regular fa-thumbs-up"></i></span>
+                                        </button>
+                                        <button className="dislike">
+                                            <span><i class="fa-regular fa-thumbs-down fa-flip-horizontal" ></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </StyledVideo>
